@@ -45,6 +45,33 @@ void Matrix::print() const
 	}
 }
 
+void Matrix::add(const Matrix& other)
+{
+	if (this->height == other.height and this->width == other.width)
+	{
+		for (int i = 0; i < height; i++)
+			for (int j = 0; j < width; j++)
+				this->mat[i][j] += other.mat[i][j];	
+	}
+	else{	std::cout << "(add) invalid matrix size!\n";	}
+}
+
+void Matrix::subtract(const Matrix& other)
+{
+	if (this->height == other.height and this->width == other.width)
+	{
+		for (int i = 0; i < height; i++)
+			for (int j = 0; j < width; j++)
+				this->mat[i][j] -= other.mat[i][j];
+	}
+	else { std::cout << "(add) invalid matrix size!\n"; }
+}
+
+void Matrix::multiply(const Matrix& other)
+{
+}
+
+
 //Matrix& Matrix::operator=(const Matrix& other)
 //{
 //	if (this->height == other.height and this->width == other.width)

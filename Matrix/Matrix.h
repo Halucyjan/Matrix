@@ -7,8 +7,12 @@ class Matrix
 public:
 	Matrix();
 	Matrix(int, int);
-	Matrix(const Matrix&);
+	Matrix(const Matrix& other);
 	void print() const;
+	void add(const Matrix& other);
+	void subtract(const Matrix& other);
+	void multiply(const Matrix& other);
+
 	//Matrix& operator=(const Matrix&);
 
 
