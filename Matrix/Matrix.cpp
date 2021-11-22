@@ -7,40 +7,49 @@ Matrix::Matrix()
 	std::cin >> this->width;
 	std::cout << "give height: ";
 	std::cin >> this->height;
-	this->mat = std::make_unique < std::unique_ptr<double[]> []> (this->height);
 
-	for (int i = 0; i < this->height; i++)
-		this->mat[i] = std::make_unique<double[]>(this->width);
+	std::vector<double> matrixRow;
+	matrixRow.resize(width, 0);
+	matrixTab.resize(height, matrixRow);
 }
 
-Matrix::Matrix(int W, int H)
-	:width(W), height(H)
+Matrix::Matrix(int Width, int Height)
+	:width(Width), height(Height)
 {
-	this->mat = std::make_unique < std::unique_ptr<double[]>[]>(this->height);
+	std::vector<double> matrixRow;
+	matrixRow.resize(width, 0);
+	matrixTab.resize(height, matrixRow);
+}
 
-	for (int i = 0; i < this->height; i++)
-		this->mat[i] = std::make_unique<double[]>(this->width);
+Matrix::Matrix(const std::vector<std::vector<double>>& otherMatrix)
+	:width(otherMatrix.size()), height(otherMatrix[0].size())
+{
+	this->matrixTab = otherMatrix;
 }
 
 Matrix::Matrix(const Matrix& other)
 	:width(other.width), height(other.height)
 {
-	this->mat = std::make_unique < std::unique_ptr<double[]>[]>(this->height);
+	std::vector<double> matrixRow;
+	matrixRow.resize(other.width, 0);
+	matrixTab.resize(other.height, matrixRow);
 
-	for (int i = 0; i < this->height; i++)
-		this->mat[i] = std::make_unique<double[]>(this->width);
+	for (int i = 0; i < width; i++)
+		for (int j = 0; j < height; j++)
+			this->matrixTab[i][j] = other.matrixTab[i][j];
+}
 
-	for (int i = 0; i < height; i++)
-		for (int j = 0; j < width; j++)
-			this->mat[i][j] = other.mat[i][j];
+Matrix::~Matrix()
+{
+	std::cout << "destruktor" << std::endl;
 }
 
 void Matrix::print() const
 {
-	for (int i = 0; i < height; i++)
+	for (int i = 0; i < matrixTab.size(); i++)
 	{
-		for (int j = 0; j < width; j++)
-			std::cout << mat[i][j] << " ";
+		for (int j = 0; j < matrixTab[i].size(); j++)
+			std::cout << matrixTab[i][j] << " ";
 		std::cout << std::endl;
 	}
 }
@@ -49,9 +58,9 @@ void Matrix::add(const Matrix& other)
 {
 	if (this->height == other.height and this->width == other.width)
 	{
-		for (int i = 0; i < height; i++)
-			for (int j = 0; j < width; j++)
-				this->mat[i][j] += other.mat[i][j];	
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+				this->matrixTab[i][j] = this->matrixTab[i][j] + other.matrixTab[i][j];
 	}
 	else{	std::cout << "(add) invalid matrix size!\n";	}
 }
@@ -60,30 +69,13 @@ void Matrix::subtract(const Matrix& other)
 {
 	if (this->height == other.height and this->width == other.width)
 	{
-		for (int i = 0; i < height; i++)
-			for (int j = 0; j < width; j++)
-				this->mat[i][j] -= other.mat[i][j];
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+				this->matrixTab[i][j] = this->matrixTab[i][j] - other.matrixTab[i][j];
 	}
-	else { std::cout << "(add) invalid matrix size!\n"; }
+	else { std::cout << "(subtract) invalid matrix size!\n"; }
 }
 
 void Matrix::multiply(const Matrix& other)
 {
 }
-
-
-//Matrix& Matrix::operator=(const Matrix& other)
-//{
-//	if (this->height == other.height and this->width == other.width)
-//	{
-//		for (int i = 0; i < height; i++)
-//			for (int j = 0; j < width; j++)
-//				 this->mat[i][j] = other.mat[i][j];	
-//		return *this;
-//	}
-//	else
-//	{
-//		std::cout << "(=) invalid matrix size!\n";
-//		return *this;
-//	}
-//}
