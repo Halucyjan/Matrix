@@ -30,13 +30,13 @@ Matrix::Matrix(const std::vector<std::vector<double>>& otherMatrix)
 Matrix::Matrix(const Matrix& other)
 	:width(other.width), height(other.height)
 {
-	std::vector<double> matrixRow;
-	matrixRow.resize(other.width, 0);
-	matrixTab.resize(other.height, matrixRow);
+	//std::vector<double> matrixRow;
+	//matrixRow.resize(other.width, 0);
+	//matrixTab.resize(other.height, matrixRow);
 
-	for (int i = 0; i < width; i++)
-		for (int j = 0; j < height; j++)
-			this->matrixTab[i][j] = other.matrixTab[i][j];
+	//for (int i = 0; i < width; i++)
+		//for (int j = 0; j < height; j++)
+			this->matrixTab = other.matrixTab;
 }
 
 Matrix::~Matrix()
