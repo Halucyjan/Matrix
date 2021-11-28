@@ -30,18 +30,12 @@ Matrix::Matrix(const std::vector<std::vector<double>>& otherMatrix)
 Matrix::Matrix(const Matrix& other)
 	:width(other.width), height(other.height)
 {
-	//std::vector<double> matrixRow;
-	//matrixRow.resize(other.width, 0);
-	//matrixTab.resize(other.height, matrixRow);
-
-	//for (int i = 0; i < width; i++)
-		//for (int j = 0; j < height; j++)
 			this->matrixTab = other.matrixTab;
 }
 
 Matrix::~Matrix()
 {
-	std::cout << "destruktor" << std::endl;
+	//std::cout << "destruktor" << std::endl;
 }
 
 void Matrix::print() const
@@ -78,4 +72,20 @@ void Matrix::subtract(const Matrix& other)
 
 void Matrix::multiply(const Matrix& other)
 {
+	if (this->width == other.height)
+	{
+		Matrix temp(other.width, this->height);
+
+		for(int i = 0; i <temp.width; i++)
+			for (int j = 0; j < temp.height; j++)
+			{
+				double tempDouble = 0;
+				
+				for (int k = 0; k < temp.width; k++)
+					tempDouble += this->matrixTab[k][j] * other.matrixTab[i][k];
+
+					temp.matrixTab[i][j] = tempDouble;
+			}
+		*this = temp;
+	}
 }
