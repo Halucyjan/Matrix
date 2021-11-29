@@ -17,6 +17,10 @@ public:
 	void subtract(const Matrix& other);
 	void multiply(const Matrix& other);
 
+	Matrix operator+(const Matrix& other);
+	Matrix operator-(const Matrix& other);
+	Matrix operator*(const Matrix& other);
+
 
 private:
 	std::vector<std::vector<double> > matrixTab;

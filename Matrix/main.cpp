@@ -21,10 +21,10 @@ int main()
     std::cout << std::endl;
     Matrix mat2(mat1);
     Matrix mat3(4,5);
-    mat2.multiply(mat1);
+    mat2= mat2 * mat1;
     mat2.print();
     std::cout << std::endl;
-    mat1.add(mat1);
+    mat1 = mat1 + mat1;
     mat1.print();
     std::cout << std::endl;
     mat3 = mat1;

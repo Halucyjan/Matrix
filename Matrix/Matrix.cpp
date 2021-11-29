@@ -88,4 +88,51 @@ void Matrix::multiply(const Matrix& other)
 			}
 		*this = temp;
 	}
+	else{ std::cout << "(multiply) invalid matrix size!\n"; }
+}
+
+Matrix Matrix::operator+(const Matrix& other)
+{
+	if (this->height == other.height and this->width == other.width)
+	{
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+				this->matrixTab[i][j] = this->matrixTab[i][j] + other.matrixTab[i][j];
+		return *this;
+	}
+	else { std::cout << "(+) invalid matrix size!\n"; }
+}
+
+Matrix Matrix::operator-(const Matrix& other)
+{
+	if (this->height == other.height and this->width == other.width)
+	{
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+				this->matrixTab[i][j] = this->matrixTab[i][j] - other.matrixTab[i][j];
+		return *this;
+	}
+	else { std::cout << "(-) invalid matrix size!\n"; }
+}
+
+Matrix Matrix::operator*(const Matrix& other)
+{
+	if (this->width == other.height)
+	{
+		Matrix temp(other.width, this->height);
+
+		for (int i = 0; i < temp.width; i++)
+			for (int j = 0; j < temp.height; j++)
+			{
+				double tempDouble = 0;
+
+				for (int k = 0; k < temp.width; k++)
+					tempDouble += this->matrixTab[k][j] * other.matrixTab[i][k];
+
+				temp.matrixTab[i][j] = tempDouble;
+			}
+		//*this = temp;
+		return temp;
+	}
+	else { std::cout << "(multiply) invalid matrix size!\n"; }
 }
