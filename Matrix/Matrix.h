@@ -26,10 +26,14 @@ public:
 	Matrix operator*(const Matrix& other);
 
 
+
 private:
+	//determinant function
 	Matrix det(Matrix);
+	float det1x1();
 	float det2x2(Matrix mat2x2);
-	float det1x1(Matrix mat1x1);
+	
+	//variables
 	std::vector<std::vector<double> > matrixTab;
 	int width, height;
 };

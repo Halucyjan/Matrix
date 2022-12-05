@@ -104,11 +104,15 @@ int Matrix::determinant()
 	if (!this->MatrixIsSquare())
 	{	
 		std::cout << "Matrix should be square!" << std::endl;
-		return 0;
+		throw "invalid matrix";
 	}
-	else
+	else if(this->width == 1)
 	{
-
+		return this->det1x1();
+	}
+	else if(this->width == 2)
+	{
+		return det2x2(*this);
 	}
 		
 }
@@ -120,9 +124,14 @@ Matrix Matrix::det(Matrix mat)
 	return Matrix();
 }
 
-float det2x2(Matrix mat2x2)
+float Matrix::det2x2(Matrix mat2x2)
 {
 	return (mat2x2.getValue(0,0) * mat2x2.getValue(1,1)) - (mat2x2.getValue(1, 0) * mat2x2.getValue(0, 1));
+}
+
+float Matrix::det1x1()
+{
+	return this->matrixTab[0][0];
 }
 
 float Matrix::getValue(int w, int h)
