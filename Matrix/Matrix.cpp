@@ -91,6 +91,45 @@ void Matrix::multiply(const Matrix& other)
 	else{ std::cout << "(multiply) invalid matrix size!\n"; }
 }
 
+bool Matrix::MatrixIsSquare() const
+{
+	if (this->width == this->height)
+		return true;
+	else
+		return false;
+}
+
+int Matrix::determinant()
+{
+	if (!this->MatrixIsSquare())
+	{	
+		std::cout << "Matrix should be square!" << std::endl;
+		return 0;
+	}
+	else
+	{
+
+	}
+		
+}
+
+
+
+Matrix Matrix::det(Matrix mat)
+{
+	return Matrix();
+}
+
+float det2x2(Matrix mat2x2)
+{
+	return (mat2x2.getValue(0,0) * mat2x2.getValue(1,1)) - (mat2x2.getValue(1, 0) * mat2x2.getValue(0, 1));
+}
+
+float Matrix::getValue(int w, int h)
+{
+	return this->matrixTab[w][h];
+}
+
 Matrix Matrix::operator+(const Matrix& other)
 {
 	if (this->height == other.height and this->width == other.width)
@@ -136,3 +175,5 @@ Matrix Matrix::operator*(const Matrix& other)
 	}
 	else { std::cout << "(multiply) invalid matrix size!\n"; }
 }
+
+
