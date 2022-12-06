@@ -19,6 +19,7 @@ public:
 	int determinant();
 	bool MatrixIsSquare() const;
 	float getValue(int w, int h);
+	Matrix transpose();
 
 
 	Matrix operator+(const Matrix& other);
@@ -29,7 +30,7 @@ public:
 
 private:
 	//determinant function
-	Matrix det(Matrix);
+	float det(Matrix);
 	float det1x1();
 	float det2x2(Matrix mat2x2);
 	

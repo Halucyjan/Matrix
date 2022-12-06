@@ -114,14 +114,22 @@ int Matrix::determinant()
 	{
 		return det2x2(*this);
 	}
+	else
+	{
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+			{
+
+			}
+	}
 		
 }
 
 
 
-Matrix Matrix::det(Matrix mat)
+float Matrix::det(Matrix mat)
 {
-	return Matrix();
+	return 0;
 }
 
 float Matrix::det2x2(Matrix mat2x2)
@@ -137,6 +145,17 @@ float Matrix::det1x1()
 float Matrix::getValue(int w, int h)
 {
 	return this->matrixTab[w][h];
+}
+
+Matrix Matrix::transpose()
+{
+	Matrix temp(this->height, this->width);
+	for (int i = 0; i < width; i++)
+		for (int j = 0; j < height; j++)
+		{
+			temp.matrixTab[j][i] = matrixTab[i][j];
+		}
+	return temp;
 }
 
 Matrix Matrix::operator+(const Matrix& other)

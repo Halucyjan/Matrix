@@ -14,7 +14,7 @@ int main()
 
     for (int i = 0; i < tab2d.size(); i++)
         for (int j = 0; j < tab2d[i].size(); j++)
-            tab2d[i][j] = (int)(i+j);
+            tab2d[i][j] = (int)(i+j*2);
 
     Matrix mat1(tab2d);
     mat1.print();
@@ -28,7 +28,7 @@ int main()
     mat1.print();
     std::cout << std::endl;
     mat3 = mat1;
-    mat1.subtract(mat1);
+    mat1 = mat1.transpose();
     mat1.print();
     std::cout << std::endl;
     //mat3 = mat1;
