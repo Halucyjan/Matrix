@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+#include <iostream>
 
 class Matrix
 {
@@ -25,6 +26,8 @@ public:
 	Matrix operator+(const Matrix& other);
 	Matrix operator-(const Matrix& other);
 	Matrix operator*(const Matrix& other);
+
+	friend std::ostream& operator<<(std::ostream& os, const Matrix& mat);
 
 
 

@@ -204,4 +204,8 @@ Matrix Matrix::operator*(const Matrix& other)
 	else { std::cout << "(multiply) invalid matrix size!\n"; }
 }
 
-
+std::ostream& operator<<(std::ostream& os, const Matrix& mat)
+{
+	mat.print();
+	return os;
+}

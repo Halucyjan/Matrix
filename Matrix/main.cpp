@@ -17,25 +17,26 @@ int main()
             tab2d[i][j] = (int)(i+j*2);
 
     Matrix mat1(tab2d);
-    mat1.print();
-    std::cout << std::endl;
-    Matrix mat2(mat1);
-    Matrix mat3(4,5);
-    mat2= mat2 * mat1;
-    mat2.print();
-    std::cout << std::endl;
-    mat1 = mat1 + mat1;
-    mat1.print();
-    std::cout << std::endl;
-    mat3 = mat1;
-    mat1 = mat1.transpose();
-    mat1.print();
-    std::cout << std::endl;
-    //mat3 = mat1;
-    mat3.print();
-    std::cout << std::endl;
+    //mat1.print();
+    std::cout << mat1 << std::endl;
+   // std::cout << std::endl;
+   // Matrix mat2(mat1);
+   // Matrix mat3(4,5);
+   // mat2= mat2 * mat1;
+   // //mat2.print();
+   // std::cout << std::endl;
+   // mat1 = mat1 + mat1;
+   //// mat1.print();
+   // std::cout << std::endl;
+   // mat3 = mat1;
+   // mat1 = mat1.transpose();
+   // //mat1.print();
+   // std::cout << std::endl;
+   // //mat3 = mat1;
+   // //mat3.print();
+   // std::cout << std::endl;
 
-    std::cout << std::endl;
+   // std::cout << std::endl;
 
     for (int i = 0; i < tab2d.size(); i++)
     {
