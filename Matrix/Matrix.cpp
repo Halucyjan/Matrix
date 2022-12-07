@@ -13,8 +13,8 @@ Matrix::Matrix()
 	matrixTab.resize(height, matrixRow);
 }
 
-Matrix::Matrix(int Width, int Height)
-	:width(Width), height(Height)
+Matrix::Matrix(int awidth, int aheight)
+	:width(awidth), height(aheight)
 {
 	std::vector<double> matrixRow;
 	matrixRow.resize(width, 0);
@@ -35,7 +35,7 @@ Matrix::Matrix(const Matrix& other)
 
 Matrix::~Matrix()
 {
-	//std::cout << "destruktor" << std::endl;
+	//std::cout << "destructor" << std::endl;
 }
 
 void Matrix::print() const
@@ -88,7 +88,8 @@ void Matrix::multiply(const Matrix& other)
 			}
 		*this = temp;
 	}
-	else{ std::cout << "(multiply) invalid matrix size!\n"; }
+	else
+		throw std::invalid_argument("(multiply) invalid matrix size!\n"); 
 }
 
 bool Matrix::MatrixIsSquare() const
@@ -103,8 +104,7 @@ int Matrix::determinant()
 {
 	if (!this->MatrixIsSquare())
 	{	
-		std::cout << "Matrix should be square!" << std::endl;
-		throw "invalid matrix";
+		throw std::invalid_argument("Matrix must be square");
 	}
 	else if(this->width == 1)
 	{
@@ -149,7 +149,9 @@ float Matrix::getValue(int w, int h)
 
 Matrix Matrix::transpose()
 {
-	Matrix temp(this->height, this->width);
+	//this is weird, but its work
+	//probably something with constructor is broken
+	Matrix temp(this->width, this->height);
 	for (int i = 0; i < width; i++)
 		for (int j = 0; j < height; j++)
 		{
@@ -167,7 +169,7 @@ Matrix Matrix::operator+(const Matrix& other)
 				this->matrixTab[i][j] = this->matrixTab[i][j] + other.matrixTab[i][j];
 		return *this;
 	}
-	else { std::cout << "(+) invalid matrix size!\n"; }
+	else { throw std::invalid_argument("(+) invalid matrix size!\n"); }
 }
 
 Matrix Matrix::operator-(const Matrix& other)
@@ -179,7 +181,7 @@ Matrix Matrix::operator-(const Matrix& other)
 				this->matrixTab[i][j] = this->matrixTab[i][j] - other.matrixTab[i][j];
 		return *this;
 	}
-	else { std::cout << "(-) invalid matrix size!\n"; }
+	else { throw std::invalid_argument("(-) invalid matrix size!\n"); }
 }
 
 Matrix Matrix::operator*(const Matrix& other)
@@ -201,7 +203,7 @@ Matrix Matrix::operator*(const Matrix& other)
 		//*this = temp;
 		return temp;
 	}
-	else { std::cout << "(multiply) invalid matrix size!\n"; }
+	else { throw std::invalid_argument("(multiply) invalid matrix size!\n"); }
 }
 
 std::ostream& operator<<(std::ostream& os, const Matrix& mat)
