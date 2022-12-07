@@ -119,10 +119,12 @@ int Matrix::determinant()
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
 			{
-
-			}
-	}
-		
+				//temp return
+				return 1;
+			};
+	};	
+//temp
+return 0;
 }
 
 
