@@ -24,6 +24,10 @@ public:
 
 	//function to show matrix
 	void print() const;
+	void printWidth() const;
+	void printHeight() const;
+	void printAll() const;
+	double getValue(const int& w, const int& h) const;
 
 	//basics operations
 	void add(const Matrix& other);
@@ -40,6 +44,7 @@ public:
 	Matrix operator+(const Matrix& other);
 	Matrix operator-(const Matrix& other);
 	Matrix operator*(const Matrix& other);
+	Matrix& operator=(const Matrix& other);
 	//overload <<operator to make "std::cout <<" works
 	friend std::ostream& operator<<(std::ostream& os, const Matrix& mat);
 

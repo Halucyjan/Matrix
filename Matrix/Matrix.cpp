@@ -48,6 +48,30 @@ void Matrix::print() const
 	}
 }
 
+void Matrix::printWidth() const
+{
+	std::cout << this->width;
+}
+
+void Matrix::printHeight() const
+{
+	std::cout << this->height;
+}
+
+void Matrix::printAll() const
+{
+	this->print();
+	std::cout << "width: ";
+	this->printWidth();
+	std::cout << std::endl << "height: ";
+	this->printHeight();
+}
+
+double Matrix::getValue(const int& w, const int& h) const
+{
+	return this->matrixTab[w][h];
+}
+
 void Matrix::add(const Matrix& other)
 {
 	if (this->height == other.height and this->width == other.width)
@@ -151,11 +175,12 @@ Matrix Matrix::transpose()
 {
 	//this is weird, but its work
 	//probably something with constructor is broken
-	Matrix temp(this->width, this->height);
-	for (int i = 0; i < width; i++)
-		for (int j = 0; j < height; j++)
+	Matrix temp(this->height, this->width);
+	temp.printAll();
+	for (int i = 0; i < this->width; i++)
+		for (int j = 0; j < this->height; j++)
 		{
-			temp.matrixTab[j][i] = matrixTab[i][j];
+			temp.matrixTab[j][i] = this->matrixTab[i][j];
 		}
 	return temp;
 }
@@ -204,6 +229,15 @@ Matrix Matrix::operator*(const Matrix& other)
 		return temp;
 	}
 	else { throw std::invalid_argument("(multiply) invalid matrix size!\n"); }
+}
+
+Matrix& Matrix::operator=(const Matrix& other)
+{
+	this->width = other.width;
+	this->height = other.height;
+	//matrixtab.~vector();
+	this->matrixTab = other.matrixTab;
+	return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Matrix& mat)
